@@ -29,7 +29,6 @@ describe('Get Order', () => {
 				method: 'GET',
 				headers: {
 					Authorization: 'Bearer access_token',
-					'X-Sandbox': 'true'
 				}
 			}
 		);
