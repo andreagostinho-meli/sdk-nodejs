@@ -10,7 +10,6 @@ export default function get({ id, config }:
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'X-Sandbox': 'true',
 			},
 			...config.options
 		}
