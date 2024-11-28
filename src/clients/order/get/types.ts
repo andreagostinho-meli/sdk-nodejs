@@ -1,12 +1,11 @@
-import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
-export declare type OrderGetData = {
-  id: string | number;
+export declare type GetOrderData = {
+  id: string;
   requestOptions?: Options;
 }
 
-export declare interface OrderGetClient extends OrderGetData {
-  config: MercadoPagoConfig;
+export declare type GetOrderClient = GetOrderData & {
+  config: MercadoPagoConfig
 }
-
