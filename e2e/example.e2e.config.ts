@@ -6,6 +6,7 @@
 
 const config = {
 	access_token: '',
+	public_key: '',
 };
 
 export {
