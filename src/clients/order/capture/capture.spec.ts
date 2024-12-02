@@ -13,7 +13,7 @@ describe('Capture Order', () => {
 			api_response: {
 				status: 200,
 				headers: [
-					'Content-Type',['application/json']
+					'Content-Type', ['application/json']
 				]
 			},
 			id: orderId,
