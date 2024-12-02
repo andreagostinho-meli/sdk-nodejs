@@ -41,7 +41,6 @@ describe('Capture Order', () => {
 				method: 'POST',
 				headers: {
 					Authorization: 'Bearer access_token',
-					'X-Sandbox': 'true',
 				}
 			}
 		);

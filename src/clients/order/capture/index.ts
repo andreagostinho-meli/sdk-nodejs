@@ -10,7 +10,6 @@ export default function capture({ id, config }:
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'X-Sandbox': 'true',
 			},
 			...config.options
 		}

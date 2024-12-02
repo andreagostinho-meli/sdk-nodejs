@@ -8,5 +8,5 @@ export declare type CaptureOrderData = {
 }
 
 export declare type CaptureOrderClient = CaptureOrderData & {
-  config: MercadoPagoConfig
+  config: MercadoPagoConfig;
 }
