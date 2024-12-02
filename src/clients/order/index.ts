@@ -6,7 +6,7 @@ import { CreateOrderData } from './create/types';
 import { OrderResponse } from './commonTypes';
 import { GetOrderData } from './get/types';
 import { ProcessOrderData } from './process/types';
-import processOrder from './process';
+import process from './process';
 
 /**
  * Mercado Pago Order.
@@ -47,6 +47,6 @@ export class Order {
    */
 	process({ id, requestOptions }: ProcessOrderData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return processOrder({ id, config: this.config });
+		return process({ id, config: this.config });
 	}
 }

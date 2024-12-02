@@ -6,7 +6,7 @@ import { createCardToken } from '@src/mocks/createCardToken';
 
 const mercadoPagoConfig = new MercadoPago({ accessToken: config.access_token });
 
-function createBodyOrder(token: string):CreateOrderData {
+function createBodyOrder(token: string): CreateOrderData {
 	return {
 		body: {
 			type: 'online',
