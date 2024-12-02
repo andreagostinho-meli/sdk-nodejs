@@ -6,7 +6,7 @@ export declare type OrderProcessData = {
   requestOptions?: Options;
 }
 
-export declare type ProcessOrderClient = OrderProcessData & {
+export declare type OrderProcessClient = OrderProcessData & {
   config: MercadoPagoConfig;
   id: string;
 }

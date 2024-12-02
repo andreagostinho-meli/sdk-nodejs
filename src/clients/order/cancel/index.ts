@@ -1,9 +1,9 @@
 import { RestClient } from '@src/utils/restClient';
-import { CancelOrderClient } from './types';
+import { OrderCancelClient } from './types';
 import { OrderResponse } from '../commonTypes';
 
 export default function cancel({ id, config }: 
-  CancelOrderClient): Promise<OrderResponse> {
+  OrderCancelClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
 		`/v1/orders/${id}/cancel`,
 		{

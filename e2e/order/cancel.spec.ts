@@ -1,12 +1,12 @@
 import MercadoPago from '@src/index';
 import { config } from '../e2e.config';
 import { Order } from '@src/clients/order';
-import { CreateOrderData } from '@src/clients/order/create/types';
+import { OrderCreateData } from '@src/clients/order/create/types';
 import { createCardToken } from '@src/mocks/createCardToken';
 
 const mercadoPagoConfig = new MercadoPago({ accessToken: config.access_token });
 
-function createBodyOrder(token: string): CreateOrderData {
+function createBodyOrder(token: string): OrderCreateData {
 	return {
 		body: {
 			type: 'online',

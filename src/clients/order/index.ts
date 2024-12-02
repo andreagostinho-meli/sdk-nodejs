@@ -10,6 +10,7 @@ import { OrderCreateData } from './create/types';
 import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
+import { OrderCancelData } from './cancel/types';
 
 
 /**
@@ -69,7 +70,7 @@ export class Order {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
    */
-	cancel({ id, requestOptions }: CancelOrderData): Promise<OrderResponse> {
+	cancel({ id, requestOptions }: OrderCancelData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return cancel({ id, config: this.config });
 	}
