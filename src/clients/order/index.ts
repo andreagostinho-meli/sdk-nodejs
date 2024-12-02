@@ -33,7 +33,7 @@ export class Order {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/process.ts Usage Example }.
    */
-	processOrder({ id, requestOptions }: ProcessOrderData): Promise<OrderResponse> {
+	process({ id, requestOptions }: ProcessOrderData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return processOrder({ id, config: this.config });
 	}

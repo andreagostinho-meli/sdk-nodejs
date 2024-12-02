@@ -13,7 +13,7 @@ const order = new Order(mercadoPagoConfig);
 
 const orderId = '<ORDER_ID>';
 
-order.processOrder({
+order.process({
 	id: orderId,
 	requestOptions: {
 		idempotencyKey: '<IDEMPOTENCY_KEY>'

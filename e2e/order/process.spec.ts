@@ -38,7 +38,7 @@ async function generateToken(): Promise<string> {
 	return data.id;
 }
 
-async function createOrder(token: string): Promise<CreateOrderData> {
+async function createBodyOrder(token: string): Promise<CreateOrderData> {
 	return {
 		body: {
 			type: 'online',
@@ -69,11 +69,11 @@ describe('Process Order integration test', () => {
 	test('should process an Order successfully', async () => {
 		const token = await generateToken();
 		const orderClient = new Order(mercadoPagoConfig);
-		const body = await createOrder(token); 
+		const body = await createBodyOrder(token); 
 
 		const order = await orderClient.create(body);
 		const orderId = order.id;
-		const processOrder = await orderClient.processOrder({ id: orderId });
+		const processOrder = await orderClient.process({ id: orderId });
 
 		expect(processOrder.id).toBeTruthy();
 		expect(processOrder.id).toBe(orderId);

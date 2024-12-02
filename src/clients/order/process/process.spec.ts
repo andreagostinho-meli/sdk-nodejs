@@ -1,6 +1,6 @@
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import processOrder from './index';
+import process from './index';
 import { OrderResponse } from '../commonTypes';
 
 jest.mock('@utils/restClient');
@@ -25,7 +25,7 @@ describe('Process Order', () => {
 		};
 		const spyFetch = jest.spyOn(RestClient, 'fetch').mockResolvedValue(mockOrderResponse);
 		
-		const result = await processOrder({ id: orderId, config });
+		const result = await process({ id: orderId, config });
 
 		expect(spyFetch).toHaveBeenCalledWith('/v1/orders/01JDWFFTAJ5S3G6JDNQ4T66FBN/process',
 			{
