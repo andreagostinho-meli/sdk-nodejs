@@ -38,11 +38,11 @@ function createBodyOrder(token: string): CreateOrderData {
 
 describe('Capture Order integration test', () => {
 	test('should capture an Order successfully', async () => {
-		const cardTokenResponse = await createCardToken(config.access_token);
-		const token = cardTokenResponse.id;
-		const orderClient = new Order(mercadoPagoConfig);
+		const cardToken = await createCardToken(config.access_token);
+		const token = cardToken.id;
 		const body = createBodyOrder(token); 
 
+		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
 		const orderId = order.id;
 		const processOrder = await orderClient.capture({ id: orderId });

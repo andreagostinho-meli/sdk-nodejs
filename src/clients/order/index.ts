@@ -1,14 +1,15 @@
 import create from './create';
 import get from './get';
+import process from './process';
+import capture from './capture';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { CreateOrderData } from './create/types';
 import { OrderResponse } from './commonTypes';
+import { CreateOrderData } from './create/types';
 import { GetOrderData } from './get/types';
 import { ProcessOrderData } from './process/types';
-import process from './process';
 import { CaptureOrderData } from './capture/types';
-import capture from './capture';
+
 
 /**
  * Mercado Pago Order.
