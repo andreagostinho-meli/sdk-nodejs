@@ -32,7 +32,6 @@ describe('Process Order', () => {
 				method: 'POST',
 				headers: {
 					Authorization: 'Bearer access_token',
-					'X-Sandbox': 'true',
 				}
 			}
 		);
