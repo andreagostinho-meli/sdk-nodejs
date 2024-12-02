@@ -7,5 +7,5 @@ export declare type ProcessOrderData = {
 }
 
 export declare type ProcessOrderClient = ProcessOrderData & {
-  config: MercadoPagoConfig
+  config: MercadoPagoConfig;
 }
