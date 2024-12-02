@@ -6,6 +6,7 @@ export declare type OrderGetData = {
   requestOptions?: Options;
 }
 
-export declare type GetOrderClient = OrderGetData & {
-  config: MercadoPagoConfig
+export declare type GetOrderClient = {
+  config: MercadoPagoConfig;
+  id: string;
 }

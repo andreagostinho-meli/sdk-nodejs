@@ -8,4 +8,5 @@ export declare type OrderProcessData = {
 
 export declare type ProcessOrderClient = OrderProcessData & {
   config: MercadoPagoConfig;
+  id: string;
 }

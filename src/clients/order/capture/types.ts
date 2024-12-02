@@ -7,6 +7,7 @@ export declare type OrderCaptureData = {
   requestOptions?: Options;
 }
 
-export declare type CaptureOrderClient = OrderCaptureData & {
+export declare type CaptureOrderClient = {
   config: MercadoPagoConfig;
+  id: string;
 }
