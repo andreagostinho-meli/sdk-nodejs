@@ -1,14 +1,15 @@
 import create from './create';
 import get from './get';
 import process from './process';
+import capture from './capture';
 import cancel from './cancel';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse } from './commonTypes';
-import { CreateOrderData } from './create/types';
-import { GetOrderData } from './get/types';
-import { ProcessOrderData } from './process/types';
-import { CancelOrderData } from './cancel/types';
+import { OrderCreateData } from './create/types';
+import { OrderGetData } from './get/types';
+import { OrderProcessData } from './process/types';
+import { OrderCaptureData } from './capture/types';
 
 
 /**
@@ -28,7 +29,7 @@ export class Order {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/create.ts Usage Example }.
 	 */
-	create({ body, requestOptions }: CreateOrderData): Promise<OrderResponse> {
+	create({ body, requestOptions }: OrderCreateData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
 	}
@@ -38,7 +39,7 @@ export class Order {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/get.ts Usage Example }.
 	 */
-	get({ id, requestOptions }: GetOrderData): Promise<OrderResponse> {
+	get({ id, requestOptions }: OrderGetData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id, config: this.config });
 	}
@@ -48,9 +49,19 @@ export class Order {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/process.ts Usage Example }.
    */
-	process({ id, requestOptions }: ProcessOrderData): Promise<OrderResponse> {
+	process({ id, requestOptions }: OrderProcessData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return process({ id, config: this.config });
+	}
+
+	/**
+   * Capture Order.
+   *
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/capture.ts Usage Example }.
+   */
+	capture({ id, requestOptions }: OrderCaptureData): Promise<OrderResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return capture({ id, config: this.config });
 	}
 
 	/**
