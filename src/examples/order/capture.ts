@@ -26,6 +26,9 @@ async function createOrder(): Promise<string> {
 				type_config: {
 					capture_mode: 'manual'
 				},
+				payer: {
+					email: 'test_1731350184@testuser.com'
+				},
 				transactions: {
 					payments: [
 						{

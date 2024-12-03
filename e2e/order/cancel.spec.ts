@@ -45,14 +45,14 @@ describe('Cancel Order integration test', () => {
 		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
 		const orderId = order.id;
-		const processOrder = await orderClient.cancel({ id: orderId });
+		const cancelledOrder = await orderClient.cancel({ id: orderId });
 
-		expect(processOrder.id).toBeTruthy();
-		expect(processOrder.id).toBe(orderId);
-		expect(processOrder.status).toBe('cancelled');
-		expect(processOrder.status_detail).toBe('cancelled');
-		expect(processOrder.transactions.payments[0].amount).toBe('200.00');
-		expect(processOrder.transactions.payments[0].status).toBe('cancelled');
-		expect(processOrder.transactions.payments[0].status_detail).toBe('cancelled_transaction');
+		expect(cancelledOrder.id).toBeTruthy();
+		expect(cancelledOrder.id).toBe(orderId);
+		expect(cancelledOrder.status).toBe('cancelled');
+		expect(cancelledOrder.status_detail).toBe('cancelled');
+		expect(cancelledOrder.transactions.payments[0].amount).toBe('200.00');
+		expect(cancelledOrder.transactions.payments[0].status).toBe('cancelled');
+		expect(cancelledOrder.transactions.payments[0].status_detail).toBe('cancelled_transaction');
 	});
 });
