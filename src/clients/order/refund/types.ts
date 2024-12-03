@@ -4,6 +4,7 @@ import { RefundRequest } from '../create/types';
 
 export declare type OrderRefundData = {
   id: string;
+  body?: RefundRequest;
   requestOptions?: Options;
 }
 
