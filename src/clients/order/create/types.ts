@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { Options } from '@src/types';
 import { Address, Identification, Item, TypeConfig } from '../commonTypes';
 
-export declare type CreateOrderClient = {
+export declare type OrderCreateClient = {
   body: CreateOrderRequest,
   config: MercadoPagoConfig
 };
@@ -90,4 +90,13 @@ export declare type SubscriptionSequence = {
 export declare type InvoicePeriod = {
   type?: string;
   period?: number;
+}
+
+export declare type RefundRequest = {
+  transactions: TransactionRefund[];
+}
+
+export declare type TransactionRefund = {
+  id: string; 
+  amount?: string;
 }

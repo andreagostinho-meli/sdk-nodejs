@@ -1,10 +1,10 @@
 import { RestClient } from '@src/utils/restClient';
-import { OrderCreateClient } from './types';
+import { OrderRefundClient } from './types';
 import { OrderResponse } from '../commonTypes';
 
-export default function create({ body, config }: OrderCreateClient): Promise<OrderResponse> {
+export default function refund({ body, config , id }: OrderRefundClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		'/v1/orders',
+		`/v1/orders/${id}/refund`,
 		{
 			method: 'POST',
 			headers: {
