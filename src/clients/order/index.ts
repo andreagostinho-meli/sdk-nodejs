@@ -90,14 +90,13 @@ export class Order {
 		return createTransaction({ id, body, config: this.config });
 	}
 
-
 	/**
    * Delete Transaction.
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
    */
-	deleteTransaction({ id, requestOptions }: OrderDeleteTransactionData): Promise<any> {
+	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<any> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return deleteTransaction({ id, config: this.config });
+		return deleteTransaction({ id, transactionId, config: this.config });
 	}
 }
