@@ -53,14 +53,14 @@ async function createOrder(): Promise<OrderResponse> {
 (async () => {
 	const createdOrder = await createOrder();
 	const id = createdOrder.id;
-	const transaction_id = createdOrder.transactions.payments[0].id;
+	const transactionId = createdOrder.transactions.payments[0].id;
 	try {
 		const refundedOrder = await order.refund({
 			id: id, 
 			body: {
 				transactions: [
 					{
-						id: transaction_id,
+						id: transactionId,
 						amount: '25.00'
 					}
 				]
