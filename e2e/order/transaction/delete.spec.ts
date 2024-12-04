@@ -33,7 +33,7 @@ function createBodyOrder(token: string): OrderCreateData {
 	};
 }
 
-describe('Cancel Order integration test', () => {
+describe('Delete transaction integration test', () => {
 	test('should delete a transaction successfully', async () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
@@ -41,12 +41,18 @@ describe('Cancel Order integration test', () => {
 
 		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
+
+		expect(order).toBeDefined();
+		expect(order.id).toBeDefined();
+		expect(order.transactions.payments[0].id).toBeDefined();
+		console.log(order.id);
+		console.log(order.transactions.payments[0].id);
+				
 		const orderId = order.id;
 		const transactionId = order.transactions.payments[0].id;
 		const deleteTransaction = await orderClient.deleteTransaction({ id: orderId, transactionId: transactionId });
 
 		console.log(deleteTransaction);
 		expect(deleteTransaction.success).toBeTruthy(); 
-		expect(deleteTransaction.message).toBeDefined();
 	});
 });

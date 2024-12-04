@@ -17,7 +17,7 @@ export default async function deleteTransaction({ id, transactionId, config }: O
 		{
 			method: 'DELETE',
 			headers: {
-				'Authorization': `Bearer ${config.accessToken}`,
+				'Authorization': `Bearer ${config.accessToken}`
 			},
 			...config.options
 		}
