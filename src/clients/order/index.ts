@@ -5,7 +5,7 @@ import capture from './capture';
 import cancel from './cancel';
 import refund from './refund';
 import createTransaction from './transaction/create';
-
+import deleteTransaction from './transaction/delete';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, TransactionsApiResponse } from './commonTypes';
@@ -17,6 +17,7 @@ import { OrderCaptureData } from './capture/types';
 import { OrderCancelData } from './cancel/types';
 import { OrderRefundData } from './refund/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
+
 
 
 
