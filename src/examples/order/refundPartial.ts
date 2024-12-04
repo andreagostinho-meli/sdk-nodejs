@@ -69,7 +69,7 @@ async function createOrder(): Promise<OrderResponse> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order refund successfully:', refundedOrder);
+		console.log('Order refunded successfully:', refundedOrder);
 	} catch (error) {
 		console.error('Error refunding order:', error); 
 	}
