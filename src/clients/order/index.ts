@@ -3,8 +3,9 @@ import get from './get';
 import process from './process';
 import capture from './capture';
 import cancel from './cancel';
+import refund from './refund';
 import createTransaction from './transaction/create';
-import deleteTransaction from './transaction/delete';
+
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, TransactionsApiResponse } from './commonTypes';
@@ -14,6 +15,7 @@ import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
 import { OrderCancelData } from './cancel/types';
+import { OrderRefundData } from './refund/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
 
 
@@ -78,6 +80,17 @@ export class Order {
 	cancel({ id, requestOptions }: OrderCancelData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return cancel({ id, config: this.config });
+	}
+
+	/**
+   * Refund Order (total or partial).
+   *
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundTotal.ts Usage Example }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundPartial.ts Usage Example }.
+   */
+	refund({ id, body, requestOptions }: OrderRefundData): Promise<OrderResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return refund({ id, body, config: this.config });
 	}
 
 	/**
