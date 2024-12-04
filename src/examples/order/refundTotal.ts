@@ -1,5 +1,5 @@
 /**
- * Mercado Pago Refund Total Order.
+ * Mercado Pago Total Refund Order.
  *
  * @see {@link [TODO: insert Order documentation URL] Documentation }.
   */
@@ -21,7 +21,7 @@ async function createOrder(): Promise<string> {
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
 				payer:{
-					email: 'jota2@testuser.com'
+					email: '<PAYER_EMAIL>'
 				},
 				transactions: {
 					payments: [
@@ -59,7 +59,7 @@ async function createOrder(): Promise<string> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order refund successfully:', refundedOrder);
+		console.log('Order refunded successfully:', refundedOrder);
 	} catch (error) {
 		console.error('Error refund order:', error); 
 	}

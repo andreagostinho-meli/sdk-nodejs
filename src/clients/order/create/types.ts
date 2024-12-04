@@ -91,12 +91,3 @@ export declare type InvoicePeriod = {
   type?: string;
   period?: number;
 }
-
-export declare type RefundRequest = {
-  transactions: TransactionRefund[];
-}
-
-export declare type TransactionRefund = {
-  id: string; 
-  amount?: string;
-}

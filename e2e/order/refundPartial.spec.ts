@@ -43,7 +43,7 @@ describe('Refund Order Partially Integration test', () => {
 		const order = await orderClient.create(body);
 		const orderId = order.id;
 		const transactionId = order.transactions.payments[0].id;
-		const bodyrefund: RefundRequest = {
+		const bodyRefund: RefundRequest = {
 			transactions: [
 				{
 					id: transactionId,
@@ -51,7 +51,7 @@ describe('Refund Order Partially Integration test', () => {
 				}
 			]
 		};
-		const refundedPartialOrder = await orderClient.refund({ id: orderId, body: bodyrefund });
+		const refundedPartialOrder = await orderClient.refund({ id: orderId, body: bodyRefund });
 
 		expect(refundedPartialOrder.id).toBeTruthy();
 		expect(refundedPartialOrder.id).toBe(orderId);

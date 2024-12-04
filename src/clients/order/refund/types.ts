@@ -1,6 +1,5 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
-import { RefundRequest } from '../create/types';
 
 export declare type OrderRefundData = {
   id: string;
@@ -14,4 +13,12 @@ export declare type OrderRefundClient = {
   body?: RefundRequest;
 }
 
-export { RefundRequest };
+
+export declare type RefundRequest = {
+  transactions?: TransactionRefundRequest[];
+}
+
+export declare type TransactionRefundRequest = {
+  id?: string; 
+  amount?: string;
+}

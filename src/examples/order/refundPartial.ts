@@ -1,10 +1,11 @@
 /**
- * Mercado Pago Refund Partial Order.
+ * Mercado Pago Partial Refund Order.
  *
  * @see {@link [TODO: insert Order documentation URL] Documentation }.
   */
 
 import { Order } from '@src/clients/order';
+import { OrderResponse } from '@src/clients/order/commonTypes';
 import MercadoPago from '@src/index';
 
 const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 5000 } });
@@ -12,7 +13,7 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 const order = new Order(mercadoPagoConfig);
 
 // Creates an order and returns its ID.
-async function createOrder(): Promise<string> {
+async function createOrder(): Promise<OrderResponse> {
 	try {
 		const orderResponse = await order.create({
 			body: {
@@ -21,7 +22,7 @@ async function createOrder(): Promise<string> {
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
 				payer:{
-					email: 'jota2@testuser.com'
+					email: '<PAYER_EMAIL>'
 				},
 				transactions: {
 					payments: [
@@ -41,8 +42,8 @@ async function createOrder(): Promise<string> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order created successfully:', orderResponse);
-		return orderResponse.id; 
+		
+		return orderResponse;
 	} catch (error) {
 		console.error('Error creating order:', error);
 	}
@@ -50,14 +51,16 @@ async function createOrder(): Promise<string> {
 
 // Create an Order and then Refund the partial amount of the order.
 (async () => {
+	const createdOrder = await createOrder();
+	const id = createdOrder.id;
+	const transaction_id = createdOrder.transactions.payments[0].id;
 	try {
-		const orderId = await createOrder(); 
 		const refundedOrder = await order.refund({
-			id: orderId, 
+			id: id, 
 			body: {
 				transactions: [
 					{
-						id: '<transaction_id>',
+						id: transaction_id,
 						amount: '25.00'
 					}
 				]
