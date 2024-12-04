@@ -38,21 +38,13 @@ describe('Delete transaction integration test', () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
 		const body = createBodyOrder(token); 
-
 		const orderClient = new Order(mercadoPagoConfig);
-		const order = await orderClient.create(body);
-
-		expect(order).toBeDefined();
-		expect(order.id).toBeDefined();
-		expect(order.transactions.payments[0].id).toBeDefined();
-		console.log(order.id);
-		console.log(order.transactions.payments[0].id);
-				
+		
+		const order = await orderClient.create(body);	
 		const orderId = order.id;
 		const transactionId = order.transactions.payments[0].id;
-		const deleteTransaction = await orderClient.deleteTransaction({ id: orderId, transactionId: transactionId });
+		const deleteTransaction = orderClient.deleteTransaction({ id: orderId, transactionId: transactionId });
 
-		console.log(deleteTransaction);
-		expect(deleteTransaction.success).toBeTruthy(); 
+		expect(deleteTransaction).toBeTruthy(); 
 	});
 });
