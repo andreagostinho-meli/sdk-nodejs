@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import type { Options } from '@src/types';
 
 interface RestClientConfig extends Options {
-  queryParams?: Record<string, string | number>;
-  retries?: number;
+	queryParams?: Record<string, string | number>;
+	retries?: number;
 }
 
 class RestClient {
@@ -87,6 +87,8 @@ class RestClient {
 				[AppConfig.Headers.IDEMPOTENCY_KEY]: idempotencyKey,
 			};
 		}
+		console.log('REQUEST METHOD:', method);
+		console.log('IDEMPOTENCY KEY:', idempotencyKey);
 
 
 		let response: Response;
@@ -108,6 +110,11 @@ class RestClient {
 
 				return data as T;
 			} else {
+				console.log('REQUEST URL:', url);
+				console.log('REQUEST HEADERS:', customConfig.headers);
+				console.log('REQUEST BODY:', customConfig.body);
+
+				console.log('RESPONSE HEADERS:', response.headers);
 				throw await response.json();
 			}
 		};

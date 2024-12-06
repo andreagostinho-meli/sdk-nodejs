@@ -6,6 +6,7 @@ import createTransaction from './transaction/create';
 import updateTransaction from './transaction/update';
 import cancel from './cancel';
 import refund from './refund';
+import deleteTransaction from './transaction/delete';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, PaymentApiResponse, TransactionsApiResponse } from './commonTypes';
@@ -17,7 +18,8 @@ import { OrderCaptureData } from './capture/types';
 import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderCancelData } from './cancel/types';
 import { OrderRefundData } from './refund/types';
-
+import { OrderDeleteTransactionData } from './transaction/delete/types';
+import { ApiResponse } from '@src/types';
 
 /**
  * Mercado Pago Order.
@@ -110,5 +112,14 @@ export class Order {
 	updateTransaction({ id, transactionId, body, requestOptions }: OrderUpdateTransactionData): Promise<PaymentApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return updateTransaction({ id, transactionId, body, config: this.config });
+	}
+
+	/**
+	 * Delete transaction.
+	 *
+	 */
+	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<ApiResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return deleteTransaction({ id, transactionId, config: this.config });
 	}
 }
