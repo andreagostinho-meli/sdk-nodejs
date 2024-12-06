@@ -5,17 +5,19 @@ import capture from './capture';
 import cancel from './cancel';
 import refund from './refund';
 import createTransaction from './transaction/create';
+import updateTransaction from './transaction/update';
 import deleteTransaction from './transaction/delete';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { OrderResponse, TransactionsApiResponse } from './commonTypes';
-import { OrderCreateTransactionData } from './transaction/create/types';
+import { OrderResponse, PaymentApiResponse, TransactionsApiResponse } from './commonTypes';
 import { OrderCreateData } from './create/types';
 import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
 import { OrderCancelData } from './cancel/types';
 import { OrderRefundData } from './refund/types';
+import { OrderCreateTransactionData } from './transaction/create/types';
+import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
 
 
@@ -84,11 +86,11 @@ export class Order {
 	}
 
 	/**
-   * Refund Order (total or partial).
-   *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundTotal.ts Usage Example }.
+	 * Refund Order (total or partial).
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundTotal.ts Usage Example }.
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundPartial.ts Usage Example }.
-   */
+	 */
 	refund({ id, body, requestOptions }: OrderRefundData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return refund({ id, body, config: this.config });
@@ -102,6 +104,16 @@ export class Order {
 	createTransaction({ id, body, requestOptions }: OrderCreateTransactionData): Promise<TransactionsApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return createTransaction({ id, body, config: this.config });
+	}
+
+	/**
+	 * Update Order transaction.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/update.ts Usage Example }.
+	 */
+	updateTransaction({ id, transactionId, body, requestOptions }: OrderUpdateTransactionData): Promise<PaymentApiResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return updateTransaction({ id, transactionId, body, config: this.config });
 	}
 
 	/**
