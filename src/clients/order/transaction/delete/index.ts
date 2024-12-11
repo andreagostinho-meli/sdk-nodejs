@@ -1,17 +1,8 @@
 import { RestClient } from '@src/utils/restClient';
 import { OrderDeleteTransactionClient } from './types';
+import { ApiResponse } from '@src/types';
 
-interface DeleteTransactionResponse {
-  success: boolean;
-  message?: string;
-  status?: number;
-}
-
-interface ResponseWithJSON extends Response {
-  json: () => Promise<any>;
-}
-
-export default async function deleteTransaction({ id, transactionId, config }: OrderDeleteTransactionClient): Promise<DeleteTransactionResponse> {
+export default function deleteTransaction({ id, transactionId, config }: OrderDeleteTransactionClient): Promise<ApiResponse> {
 	return RestClient.fetch(
 		`/v1/orders/${id}/transactions/${transactionId}`,
 		{
@@ -21,27 +12,5 @@ export default async function deleteTransaction({ id, transactionId, config }: O
 			},
 			...config.options
 		}
-	).then((response: ResponseWithJSON) => {
-		if (response.status === 204) {
-			return {
-				success: true,
-			};
-		}
-
-		return response.json().then((errorData) => {
-			if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
-				return {
-					success: false,
-					message: errorData.errors[0].message,
-					status: response.status,
-				};
-			} else {
-				return {
-					success: false,
-					message: errorData.message,
-					status: response.status,
-				};
-			}
-		});
-	});
+	);
 }

@@ -19,6 +19,7 @@ import { OrderRefundData } from './refund/types';
 import { OrderCreateTransactionData } from './transaction/create/types';
 import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
+import { ApiResponse } from '@src/types';
 
 
 
@@ -117,11 +118,11 @@ export class Order {
 	}
 
 	/**
-   * Delete Transaction.
-   *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
-   */
-	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<any> {
+	 * Delete Transaction.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
+	 */
+	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<ApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return deleteTransaction({ id, transactionId, config: this.config });
 	}

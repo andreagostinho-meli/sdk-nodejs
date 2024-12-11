@@ -37,14 +37,17 @@ describe('Delete transaction integration test', () => {
 	test('should delete a transaction successfully', async () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
-		const body = createBodyOrder(token); 
+		const body = createBodyOrder(token);
 		const orderClient = new Order(mercadoPagoConfig);
-		
-		const order = await orderClient.create(body);	
+
+		const order = await orderClient.create(body);
 		const orderId = order.id;
 		const transactionId = order.transactions.payments[0].id;
-		const deleteTransaction = orderClient.deleteTransaction({ id: orderId, transactionId: transactionId });
+		const deleteTransaction = await orderClient.deleteTransaction({
+			id: orderId,
+			transactionId: transactionId
+		});
 
-		expect(deleteTransaction).toBeTruthy(); 
+		expect(deleteTransaction.api_response.status).toBe(204);
 	});
 });
