@@ -17,7 +17,6 @@ describe('Delete Order transaction', () => {
 		};
 		const mockResponse = {
 			status: 204,
-			json: jest.fn().mockResolvedValue({}),
 		};
 		jest.spyOn(RestClient, 'fetch').mockResolvedValue(mockResponse);
 
@@ -35,7 +34,6 @@ describe('Delete Order transaction', () => {
 		);
 		expect(result).toEqual({
 			status: 204,
-			json: expect.any(Function),
 		});
 	});
 
