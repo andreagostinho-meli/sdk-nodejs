@@ -118,9 +118,9 @@ export class Order {
 	}
 
 	/**
-	 * Delete Transaction.
+	 * Delete Order transaction.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/delete.ts Usage Example }.
 	 */
 	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<ApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
